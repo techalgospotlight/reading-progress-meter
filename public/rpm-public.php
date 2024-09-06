@@ -27,17 +27,23 @@ add_action('wp_footer', 'rpm_render_progress_meter', 100);
 /**
  * Enqueue styles and scripts for the plugin on appropriate pages.
  */
-function rpm_register_resources_reading_progress_meter_public() {
+function rpm_register_resources_reading_progress_meter_public()
+{
     if (rpm_should_enqueue_resources()) {
-        wp_enqueue_style('rpm-public-styles', plugin_dir_url(__FILE__) . 'css/rpm-public.css', array(), '', 'all');
-        wp_enqueue_script('rpm-public-scripts', plugin_dir_url(__FILE__) . 'js/rpm-public.js', array('jquery'), '', false);
+        $css_version = filemtime(plugin_dir_path(__FILE__) . 'css/rpm-public.css');
+        $js_version = filemtime(plugin_dir_path(__FILE__) . 'js/rpm-public.js');
+
+        wp_enqueue_style('rpm-public-styles', plugin_dir_url(__FILE__) . 'css/rpm-public.css', array(), $css_version, 'all');
+        wp_enqueue_script('rpm-public-scripts', plugin_dir_url(__FILE__) . 'js/rpm-public.js', array('jquery'), $js_version, false);
+
     }
 }
 
 /**
  * Render the reading progress meter in the footer if applicable.
  */
-function rpm_render_progress_meter() {
+function rpm_render_progress_meter()
+{
     if (rpm_should_enqueue_resources()) {
         $rpmSettings = get_option('rpm_settings');
         $rpmHeight = esc_attr($rpmSettings['rpm_field_height']);
@@ -45,7 +51,10 @@ function rpm_render_progress_meter() {
         $rpmBackgroundColor = esc_attr($rpmSettings['rpm_field_bg_color']);
         $rpmPosition = esc_attr($rpmSettings['rpm_field_position']);
 
-        echo rpm_get_progress_meter_html($rpmHeight, $rpmForegroundColor, $rpmBackgroundColor, $rpmPosition);
+        // Get the progress meter HTML
+        $progressMeterHtml = rpm_get_progress_meter_html($rpmHeight, $rpmForegroundColor, $rpmBackgroundColor, $rpmPosition);
+
+        echo wp_kses_post($progressMeterHtml);
     }
 }
 
@@ -54,7 +63,8 @@ function rpm_render_progress_meter() {
  *
  * @return bool True if resources should be enqueued, false otherwise.
  */
-function rpm_should_enqueue_resources() {
+function rpm_should_enqueue_resources()
+{
     $rpmSettings = get_option('rpm_settings');
     if (!$rpmSettings || !isset($rpmSettings['rpm_field_templates'])) {
         return false;
@@ -62,7 +72,8 @@ function rpm_should_enqueue_resources() {
 
     $optionTemplates = $rpmSettings['rpm_field_templates'];
 
-    if ((isset($optionTemplates['home']) && (is_front_page() || (is_home() && is_front_page())))
+    if (
+        (isset($optionTemplates['home']) && (is_front_page() || (is_home() && is_front_page())))
         || (isset($optionTemplates['blog']) && is_home() && !is_front_page())
         || (isset($optionTemplates['archive']) && is_archive())
         || (isset($optionTemplates['single']) && is_singular() && !is_front_page() && rpm_check_post_type($rpmSettings['rpm_field_posttypes']))
@@ -79,7 +90,8 @@ function rpm_should_enqueue_resources() {
  * @param array $optionPostTypes List of selected post types.
  * @return bool True if the current post type is selected, false otherwise.
  */
-function rpm_check_post_type($optionPostTypes) {
+function rpm_check_post_type($optionPostTypes)
+{
     $currentPostType = get_post_type();
     return isset($optionPostTypes[$currentPostType]);
 }
@@ -93,7 +105,8 @@ function rpm_check_post_type($optionPostTypes) {
  * @param string $position Progress meter position.
  * @return string HTML for the progress meter.
  */
-function rpm_get_progress_meter_html($height, $foregroundColor, $backgroundColor, $position) {
+function rpm_get_progress_meter_html($height, $foregroundColor, $backgroundColor, $position)
+{
     return sprintf(
         '<progress class="readingProgressMeter" data-height="%s" data-position="%s" data-foreground="%s" data-background="%s" value="0"></progress>',
         $height,

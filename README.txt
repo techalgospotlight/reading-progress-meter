@@ -1,25 +1,27 @@
 ==== Reading Progress Meter ====
 
 Contributors: TechAlgoSpotlight
-Donate link: https://www.buymeacoffee.com/krunalkanojiya
-Tags: reading, progressbar, progress, scroll, read, bar, position, indicator, template, lecture, tracking, techalgospotlight
-Requires at least: 4.9
-Tested up to: 6.4
-Requires PHP: 5.6
-Stable tag: 1.0
-License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://www.buymeacoffee.com/krunalkanojiya  
+Tags: reading, progressbar, progress, reading progress, techalgospotlight  
+Requires at least: 4.9  
+Tested up to: 6.6  
+Requires PHP: 5.6  
+Stable tag: 1.0  
+License: GPLv2  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+
+**A customizable progress bar plugin that tracks reading progress on your pages and posts.**
 
 ==== Description ====
 
-Welcome to the Reading Progress Meter your new best friend for tracking your reading progress! This nifty plugin helps you keep tabs on how much of your content your readers have devoured. Show it off in style at the top, bottom in pages and posts. It’s like having a reading buddy that never interrupts!
+Welcome to the Reading Progress Meter, your new best friend for tracking your reading progress! This nifty plugin helps you keep tabs on how much of your content your readers have devoured. Show it off in style at the top or bottom in pages and posts. It’s like having a reading buddy that never interrupts!
 
 Features:
 
 - Progress bar height: Adjustable to fit your aesthetic needs.
 - Foreground color: Pick a color that screams, “I’m reading progress!”
 - Background color: Choose a backdrop that makes the progress pop!
-- Position: Stick it at the top, bottom.
+- Position: Stick it at the top or bottom.
 - Page Templates & Post Types: Tailor it to different templates or post types – because who doesn’t love options?
 
 ==== Credits ====
@@ -33,7 +35,7 @@ Features:
 
 ==== Frequently Asked Questions ====
 
-Question: Does it work on WordPress network/multisite?
+Question: Does it work on WordPress network/multisite?  
 Answer: Not yet! But keep your eyes peeled for version 2.0, where we’ll be fixing this. Want to help? Feel free to reach out or drop a coffee donation if you’re feeling generous!
 
 ==== Screenshots ====
@@ -43,5 +45,5 @@ Answer: Not yet! But keep your eyes peeled for version 2.0, where we’ll be fix
 
 ==== Changelog ====
 
-= 1.0 =
+= 1.0 =  
 * Plugin initial release. Works fine and dandy! 🎉
