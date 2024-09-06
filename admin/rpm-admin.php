@@ -79,10 +79,9 @@ class RPM_Admin
 	 */
 	public function enqueue_styles_scripts()
 	{
-		$version = '1.0'; // Specify a version number
 		wp_enqueue_style('wp-color-picker');
-		wp_enqueue_script('rpm-admin-scripts', plugin_dir_url(__FILE__) . 'js/rpm-admin.js', ['jquery', 'wp-color-picker'], $version, true);
-		wp_enqueue_style('rpm-custom-admin-style', plugin_dir_url(__FILE__) . 'css/rpm-admin-custom.css', [], $version);
+		wp_enqueue_script('rpm-admin-scripts', plugin_dir_url(__FILE__) . 'js/rpm-admin.js', ['jquery', 'wp-color-picker'], '1.0', false);
+		wp_enqueue_style('rpm-custom-admin-style', plugin_dir_url(__FILE__) . 'css/rpm-admin-custom.css', [], '1.0');
 	}
 
 	/**
@@ -155,7 +154,7 @@ class RPM_Admin
 			$label,
 			function () use ($field_id, $type, $class, $options) {
 				$value = $this->options[$field_id] ?? '';
-				echo '<td>';
+				echo "<td>";
 				switch ($type) {
 					case 'number':
 						echo "<input type='number' name='rpm_settings[" . esc_attr($field_id) . "]' value='" . esc_attr($value) . "' />";
@@ -171,7 +170,7 @@ class RPM_Admin
 						echo "</select>";
 						break;
 				}
-				echo '</td>';
+				echo "</td>";
 			},
 			'pluginPage',
 			'rpm_main_settings_section'
@@ -190,6 +189,7 @@ class RPM_Admin
 		$this->render_template_checkbox('single', $templates, __('Single post, page, custom post', 'reading-progress-meter'));
 	}
 
+
 	/**
 	 * Render the post types settings field.
 	 */
@@ -199,7 +199,7 @@ class RPM_Admin
 		$selected_post_types = $this->options['rpm_field_posttypes'] ?? [];
 
 		foreach ($post_types as $post_type => $obj) {
-			$this->render_checkbox($obj->name, $selected_post_types, esc_html($obj->labels->name));
+			$this->render_checkbox($obj->name, $selected_post_types, $obj->labels->name);
 		}
 	}
 
@@ -220,6 +220,7 @@ class RPM_Admin
 		$checked = isset($array[$key]) ? 'checked' : '';
 		echo "<p><input type='checkbox' name='rpm_settings[rpm_field_templates][" . esc_attr($key) . "]' " . esc_attr($checked) . " value='1' /> " . esc_html($label) . "</p>";
 	}
+
 
 	/**
 	 * Settings section callback.
@@ -246,7 +247,10 @@ class RPM_Admin
 			</form>
 			<div class="rpm-footer-branding">
 				<p>
-					<?php echo esc_html(__('Powered by <a href="https://techalgospotlight.com" target="_blank">TechAlgoSpotlight.</a> Support us with <a href="https://www.buymeacoffee.com/krunalkanojiya" target="_blank">Buy Me a Coffee</a>', 'reading-progress-meter')); ?>
+					<?php
+					$message = __('Powered by <a href="https://techalgospotlight.com" target="_blank">TechAlgoSpotlight</a>. Support us with <a href="https://www.buymeacoffee.com/krunalkanojiya" target="_blank">Buy Me a Coffee</a>', 'reading-progress-meter');
+					echo wp_kses_post($message);
+					?>
 				</p>
 			</div>
 		</div>
