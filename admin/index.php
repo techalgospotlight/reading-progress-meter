@@ -1,1 +1,1 @@
-<?php // Love the way you lie
+<?php // Silence is golden

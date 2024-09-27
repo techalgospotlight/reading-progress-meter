@@ -10,6 +10,11 @@
  * @subpackage reading-progress-meter/public
  */
 
+ // If this file is called directly, abort.
+if (!defined('ABSPATH')) {
+    die;
+}
+
 /**
  * Enqueue resources and display the reading progress meter.
  *

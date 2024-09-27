@@ -1,1 +1,1 @@
-<?php // Love the way you lie
+<?php // Slince is golden

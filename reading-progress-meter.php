@@ -11,14 +11,14 @@
  * Description:       A versatile reading position indicator that can be placed at the top, bottom in various templates or post types, offering flexibility and customization options.
  * Version:           1.0
  * Author:            TechAlgoSpotlight
- * Author URI:        https://techalgospotlight.com
+ * Author URI:        https://krunalkanojiya.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       reading-progress-meter
  */
 
 // If this file is called directly, abort.
-if (!defined('WPINC')) {
+if (!defined('ABSPATH')) {
     die;
 }
 

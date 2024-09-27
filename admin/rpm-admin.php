@@ -10,6 +10,11 @@
  * @subpackage Reading_Progress_Meter/admin
  */
 
+// If this file is called directly, abort.
+if (!defined('ABSPATH')) {
+    die;
+}
+
 /**
  * Class RPM_Admin
  *
